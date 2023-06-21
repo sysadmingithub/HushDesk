@@ -165,11 +165,11 @@ class MyTheme {
 
   static const Color grayBg = Color(0xFFEFEFF2);
   static const Color accent = Color(0xFF06BA9E);  //alterado para verde petroleo acin
-  static const Color accent50 = Color(0x770071FF);
-  static const Color accent80 = Color(0xAA0071FF);
-  static const Color canvasColor = Color(0xFF212121);
-  static const Color border = Color(0xFFCCCCCC);
-  static const Color idColor = Color(0xFF00B6F0);
+  static const Color accent50 = Color(0x77ED0E0E); //alterado para vermelho
+  static const Color accent80 = Color(0xAAEDEd0E); //alterado para amarelo
+  static const Color canvasColor = Color(0xFFF26E0A); //alterado para laranja
+  static const Color border = Color(0xFF9E06D1); //alterado para rosa escuro
+  static const Color idColor = Color(0xFF2E05B3); //alterado para roxo 
   static const Color darkGray = Color.fromARGB(255, 148, 148, 148);
   static const Color cmIdColor = Color(0xFF21790B);
   static const Color dark = Colors.black87;
