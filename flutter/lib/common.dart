@@ -164,17 +164,17 @@ class MyTheme {
   MyTheme._();
 
   static const Color grayBg = Color(0xFFEFEFF2);
-  static const Color accent = Color(0xFF06BA9E);  //alterado para verde petroleo acin
-  static const Color accent50 = Color(0x77ED0E0E); //alterado para vermelho
-  static const Color accent80 = Color(0xAAEDEd0E); //alterado para amarelo
-  static const Color canvasColor = Color(0xFFF26E0A); //alterado para laranja
-  static const Color border = Color(0xFF9E06D1); //alterado para rosa escuro
-  static const Color idColor = Color(0xFF2E05B3); //alterado para roxo 
-  static const Color darkGray = Color.fromARGB(255, 148, 148, 148);
-  static const Color cmIdColor = Color(0xFF21790B);
-  static const Color dark = Colors.black87;
-  static const Color button = Color(0xFF2C8CFF);
-  static const Color hoverBorder = Color(0xFF999999);
+  static const Color accent = Color(0xFFFFFFFF); 
+  static const Color accent50 = Color(0x77FFFFFF); 
+  static const Color accent80 = Color(0xAAFFFFFF); 
+  static const Color canvasColor = Color(0xFFFFFFFF); 
+  static const Color border = Color(0xFFFFFFFF); 
+  static const Color idColor = Color(0xFFFFFFFF); //alterado para roxo 
+  static const Color darkGray = Color.(0xFF9E06D1) //rosa escuro
+  static const Color cmIdColor = Color(0xFF06BA9E); //verde acin
+  static const Color dark = Colors.(0xFFF26E0A); //laranja
+  static const Color button = Color(0xFFED0E0E); //vermelho 
+  static const Color hoverBorder = Color(0xFFEDED0E); //amarelo
 
   // ListTile
   static const ListTileThemeData listTileTheme = ListTileThemeData(
