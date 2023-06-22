@@ -170,9 +170,9 @@ class MyTheme {
   static const Color canvasColor = Color(0xFFFFFFFF); 
   static const Color border = Color(0xFFFFFFFF); 
   static const Color idColor = Color(0xFFFFFFFF);
-  static const Color darkGray = Color.(0xFF9E06D1); //rosa escuro
+  static const Color darkGray = Color(0xFF9E06D1); //rosa escuro
   static const Color cmIdColor = Color(0xFF06BA9E); //verde acin
-  static const Color dark = Colors.(0xFFF26E0A); //laranja
+  static const Color dark = Color(0xFFF26E0A); //laranja
   static const Color button = Color(0xFFED0E0E); //vermelho 
   static const Color hoverBorder = Color(0xFFEDED0E); //amarelo
 
