@@ -112,18 +112,18 @@ class ColorThemeExtension extends ThemeExtension<ColorThemeExtension> {
   final Color? shadow;
 
   static final light = ColorThemeExtension(
-    border: Color(0xFFCCCCCC),
-    border2: Color(0xFFBBBBBB),
-    highlight: Color(0xFFE5E5E5),
-    drag_indicator: Colors.grey[800],
+    border: Color(0xFFED0E0E), //vermelho
+    border2: Color(0xFFF26E0A), //laranja
+    highlight: Color(0xFF06BA9E), //verde acin
+    drag_indicator: Color(0xFF9E06D1), //rosa escuro
     shadow: Colors.black,
   );
 
   static final dark = ColorThemeExtension(
-    border: Color(0xFF555555),
-    border2: Color(0xFFE5E5E5),
-    highlight: Color(0xFF3F3F3F),
-    drag_indicator: Colors.grey,
+    border: Color(0xFFED0E0E), //vermelho
+    border2: Color(0xFFF26E0A), //laranja
+    highlight: Color(0xFF06BA9E), //verde acin
+    drag_indicator: Color(0xFF9E06D1), //rosa escuro
     shadow: Colors.grey,
   );
 
@@ -163,18 +163,18 @@ class ColorThemeExtension extends ThemeExtension<ColorThemeExtension> {
 class MyTheme {
   MyTheme._();
 
-  static const Color grayBg = Color(0xFFEFEFF2);
-  static const Color accent = Color(0xFFFFFFFF); 
-  static const Color accent50 = Color(0x77FFFFFF); 
-  static const Color accent80 = Color(0xAAFFFFFF); 
-  static const Color canvasColor = Color(0xFFFFFFFF); 
-  static const Color border = Color(0xFFFFFFFF); 
-  static const Color idColor = Color(0xFFFFFFFF);
-  static const Color darkGray = Color(0xFF9E06D1); //rosa escuro
-  static const Color cmIdColor = Color(0xFF06BA9E); //verde acin
-  static const Color dark = Color(0xFFF26E0A); //laranja
-  static const Color button = Color(0xFFED0E0E); //vermelho 
-  static const Color hoverBorder = Color(0xFFEDED0E); //amarelo
+  static const Color grayBg = Color(0xFFEDED0E); //amarelo
+  static const Color accent = Color(0xFF0071FF);
+  static const Color accent50 = Color(0x770071FF);
+  static const Color accent80 = Color(0xAA0071FF);
+  static const Color canvasColor = Color(0xFF212121);
+  static const Color border = Color(0xFFCCCCCC);
+  static const Color idColor = Color(0xFF00B6F0);
+  static const Color darkGray = Color.fromARGB(255, 148, 148, 148);
+  static const Color cmIdColor = Color(0xFF21790B);
+  static const Color dark = Colors.black87;
+  static const Color button = Color(0xFF2C8CFF);
+  static const Color hoverBorder = Color(0xFF999999);
 
   // ListTile
   static const ListTileThemeData listTileTheme = ListTileThemeData(
