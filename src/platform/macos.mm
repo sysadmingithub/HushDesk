@@ -13,6 +13,11 @@ extern "C" bool CanUseNewApiForScreenCaptureCheck() {
     #endif
 }
 
+extern "C" uint32_t majorVersion() {
+    NSOperatingSystemVersion version = [[NSProcessInfo processInfo] operatingSystemVersion];
+    return version.majorVersion;
+}
+
 extern "C" bool IsCanScreenRecording(bool prompt) {
     #ifdef NO_InputMonitoringAuthStatus
     return false;
@@ -104,16 +109,20 @@ extern "C" bool MacCheckAdminAuthorization() {
     return Elevate(NULL, NULL);
 }
 
-extern "C" float BackingScaleFactor() {
-    NSScreen* s = [NSScreen mainScreen];
-    if (s) return [s backingScaleFactor];
+extern "C" float BackingScaleFactor(uint32_t display) {
+    display -= 1;
+    NSArray<NSScreen *> *screens = [NSScreen screens];
+    if (display >= 0 && display < [screens count]) {
+        NSScreen* s = [screens objectAtIndex:display];
+        if (s) return [s backingScaleFactor];
+    }
     return 1;
 }
 
 // https://github.com/jhford/screenresolution/blob/master/cg_utils.c
 // https://github.com/jdoupe/screenres/blob/master/setgetscreen.m
 
-size_t bitDepth(CGDisplayModeRef mode) {	
+size_t bitDepth(CGDisplayModeRef mode) {
     size_t depth = 0;
     // Deprecated, same display same bpp? 
     // https://stackoverflow.com/questions/8210824/how-to-avoid-cgdisplaymodecopypixelencoding-to-get-bpp
