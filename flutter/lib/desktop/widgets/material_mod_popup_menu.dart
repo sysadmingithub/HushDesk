@@ -341,8 +341,9 @@ class PopupMenuItemState<T, W extends PopupMenuItem<T>> extends State<W> {
   @protected
   void handleTap() {
     widget.onTap?.call();
-
-    Navigator.pop<T>(context, widget.value);
+    if (Navigator.canPop(context)) {
+      Navigator.pop<T>(context, widget.value);
+    }
   }
 
   @override
@@ -1378,7 +1379,6 @@ class PopupMenuButtonState<T> extends State<PopupMenuButton<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final IconThemeData iconTheme = IconTheme.of(context);
     final bool enableFeedback = widget.enableFeedback ??
         PopupMenuTheme.of(context).enableFeedback ??
         true;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +43,8 @@ class _FileManagerTabPageState extends State<FileManagerTabPage> {
         page: FileManagerPage(
           key: ValueKey(params['id']),
           id: params['id'],
+          password: params['password'],
+          isSharedPassword: params['isSharedPassword'],
           tabController: tabController,
           forceRelay: params['forceRelay'],
         )));
@@ -59,10 +60,10 @@ class _FileManagerTabPageState extends State<FileManagerTabPage> {
       print(
           "[FileTransfer] call ${call.method} with args ${call.arguments} from window $fromWindowId to ${windowId()}");
       // for simplify, just replace connectionId
-      if (call.method == "new_file_transfer") {
+      if (call.method == kWindowEventNewFileTransfer) {
         final args = jsonDecode(call.arguments);
         final id = args['id'];
-        window_on_top(windowId());
+        windowOnTop(windowId());
         tabController.add(TabInfo(
             key: id,
             label: id,
@@ -72,6 +73,8 @@ class _FileManagerTabPageState extends State<FileManagerTabPage> {
             page: FileManagerPage(
               key: ValueKey(id),
               id: id,
+              password: args['password'],
+              isSharedPassword: args['isSharedPassword'],
               tabController: tabController,
               forceRelay: args['forceRelay'],
             )));
@@ -88,19 +91,22 @@ class _FileManagerTabPageState extends State<FileManagerTabPage> {
 
   @override
   Widget build(BuildContext context) {
-    final tabWidget = Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: MyTheme.color(context).border!)),
-      child: Scaffold(
-          backgroundColor: Theme.of(context).cardColor,
-          body: DesktopTab(
-            controller: tabController,
-            onWindowCloseButton: handleWindowCloseButton,
-            tail: const AddButton().paddingOnly(left: 10),
-            labelGetter: DesktopTab.labelGetterAlias,
-          )),
-    );
-    return Platform.isMacOS || kUseCompatibleUiMode
+    final child = Scaffold(
+        backgroundColor: Theme.of(context).cardColor,
+        body: DesktopTab(
+          controller: tabController,
+          onWindowCloseButton: handleWindowCloseButton,
+          tail: const AddButton(),
+          labelGetter: DesktopTab.tablabelGetter,
+        ));
+    final tabWidget = isLinux
+        ? buildVirtualWindowFrame(context, child)
+        : Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: MyTheme.color(context).border!)),
+            child: child,
+          );
+    return isMacOS || kUseCompatibleUiMode
         ? tabWidget
         : SubWindowDragToResizeArea(
             child: tabWidget,
@@ -125,9 +131,9 @@ class _FileManagerTabPageState extends State<FileManagerTabPage> {
       tabController.clear();
       return true;
     } else {
-      final opt = "enable-confirm-closing-tabs";
       final bool res;
-      if (!option2bool(opt, await bind.mainGetOption(key: opt))) {
+      if (!option2bool(kOptionEnableConfirmClosingTabs,
+          bind.mainGetLocalOption(key: kOptionEnableConfirmClosingTabs))) {
         res = true;
       } else {
         res = await closeConfirmDialog();
